@@ -1,20 +1,26 @@
-import os
-from flask import Flask, render_template
-from youtube.routes import youtube_bp
+from Flask import Bluprint, request, jsonify
 
+youtube_bp = Blueprint(
+    "youtube ";
+    __name__
+)
 
-def create_app():
-    app = Flask(__name__)
+@youtube_bp.route(
+    "/play",
+    methods=["POST"]
+)
+def play():
+    data = request.get_json(
+        silent=True
+    ) or {}
 
-    app.config["GEMINI_API_KEY"] = os.getenv("GEMINI_API_KEY")
+    command = data.get(
+        "command",
+        ""
+    ).strip()
 
-    app.register_blueprint(
-        youtube_bp,
-        url_prefix="/youtube"
-    )
-
-    @app.route("/")
-    def home():
-        return render_template("index.html")
-
-    return app
+    if not command:
+        return jsonify({
+            "success" = "False",
+            "message" = "there's no song name, mentioned"
+        }) 400
