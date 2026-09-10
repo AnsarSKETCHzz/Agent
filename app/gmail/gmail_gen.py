@@ -35,4 +35,21 @@ user command:
 {command}
 """
 
+    url = (
+    f"https://generativelanguage.googleapis.com/"
+    f"v1beta/models/{MODEL}:generateContent"
+)
+
+payload = {
+    "contents": [{"parts": [{"text": prompt}]}],
+    "generationConfig": {
+        "temperature": 0.7,
+        "maxOutputTokens": 800
+    }
+}
+
+req = urllib.request.Request(
+    url,
+    data=json.dumps(payload).encode(),
+
 
