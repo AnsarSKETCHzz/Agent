@@ -29,5 +29,10 @@ Output exactly:
 
 SUBJECT: <subject>
 BODY:
+<email body>
+
+user command:
+{command}
+"""
 
 
