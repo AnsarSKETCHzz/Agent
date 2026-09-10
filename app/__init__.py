@@ -29,3 +29,12 @@ def home():
     return render_template("index.html")
 
 # HTML
+@app.route("/html")
+def html():
+    return render_template("index.html")
+
+# Health
+@app.route("/health")
+def health():
+    return jsonify({
+        "status": "ok",
